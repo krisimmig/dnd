@@ -1,8 +1,10 @@
 php:
-  image: php:fpm
+  build: .
+  dockerfile: Dockerfile-php
   container_name: php
   volumes:
     - .:/var/www/laravel
+  working_dir: /var/www/laravel
   entrypoint:
     - php-fpm
 
