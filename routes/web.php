@@ -11,10 +11,15 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/login', function () {
+    return view('auth/login');
+});
+
+Route::middleware('auth')->group(function () {
+    Route::get('/{vue_capture?}', function () {
+        return view('home');
+    })->where('vue_capture', '[\/\w\.-]*');
 });
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
